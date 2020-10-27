@@ -29,7 +29,7 @@ pipeline {
                 }
          stage ('Deploy') {
                             steps {
-                                withMaven(mavenSettingsConfig: 'maven-config'){
+                                withMaven(mavenSettingsConfig: 'maven-config', globalMavenSettingsConfig: 'maven-config'){
                                     sh "mvn -X deploy"
                                 }
                             }
