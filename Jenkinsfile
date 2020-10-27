@@ -7,7 +7,7 @@ pipeline {
         maven 'maven'
         jdk 'jdk11'
     }
-    params {
+    parameters {
         booleanParam(name: "Perform release ?", description: '', defaultValue: false)
         string(defaultValue: "", description: '', name: 'Release version')
     }
