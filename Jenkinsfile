@@ -44,10 +44,15 @@ pipeline {
                     withMaven(mavenSettingsConfig: 'maven-config', globalMavenSettingsConfig: 'global-config') {
                         sh 'git config --global user.email "you@example.com"'
                         sh 'git config --global user.name "Test"'
-                        sh 'mvn release:prepare -s C:/Users/Majid/.m2/settings.xml -B -Dusername="$USERNAME_VAR" -Dpassword="$PASSWORD_VAR"'
-                        sh 'mvn release:perform -s C:/Users/Majid/.m2/settings.xml -B -Dusername="$USERNAME_VAR" -Dpassword="$PASSWORD_VAR"'
+                        sh 'mvn release:prepare -s C:/Users/Majid/.m2/settings.xml -B -Dusername="mjidsaa" -Dpassword="lalunerougeLAM1986:"'
+                        sh 'mvn release:perform -s C:/Users/Majid/.m2/settings.xml -B -Dusername="mjidsaa" -Dpassword="lalunerougeLAM1986:"'
                     }
                 }
+            }
+        }
+        stage('Sonar') {
+            steps {
+                sh "mvn  -s C:/Users/Majid/.m2/settings.xml sonar:sonar"
             }
         }
     }
