@@ -15,4 +15,24 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <properties>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
+  </properties>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>helloworld-snapshot</id>
+      <url>http://localhost:8081/nexus/content/repositories/helloworld-snapshot/</url>
+    </snapshotRepository>
+    <repository>
+      <id>helloworld-release</id>
+      <url>http://localhost:8081/nexus/content/repositories/helloworld-release/</url>
+    </repository>
+  </distributionManagement>
+  <scm>
+    <connection>scm:git:https://github.com/mjidsaa/tpJenkins.git</connection>
+    <url>https://github.com/mjidsaa/tpJenkins</url>
+    <developerConnection>scm:git:https://github.com/mjidsaa/tpJenkins.git</developerConnection>
+  </scm>
 </project>
