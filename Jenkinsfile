@@ -39,7 +39,7 @@ pipeline {
             }
         }
         stage('Release') {
-            when { expression { performRelease && releaseVersion != null && releaseVersion != ''} }
+            when { expression {  params['Perform release ?'] &&  params['Release version'] != null && params['Release version'] != ''} }
             steps {
                 withMaven(mavenSettingsConfig: 'maven-config', globalMavenSettingsConfig: 'global-config') {
                     sh "mvn release:prepare -s C:/Users/Majid/.m2/settings.xml"
