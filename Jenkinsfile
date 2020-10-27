@@ -6,7 +6,6 @@ pipeline {
     tools {
         maven 'maven'
         jdk 'jdk11'
-        mavenSettingsConfig 'maven-config'
     }
     stages {
         stage ('Initialize') {
@@ -30,8 +29,8 @@ pipeline {
                 }
          stage ('Deploy') {
                             steps {
-                                withMaven {
-                                    sh "mvn deploy"
+                                configFileProvider([configFile(fileId: 'maven-config', variable: 'MAVEN_SETTINGS_XML')]) {
+                                    sh "mvn deploy -s $MAVEN_SETTINGS_XML"
                                 }
                             }
                         }
