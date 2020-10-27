@@ -40,11 +40,13 @@ pipeline {
         stage('Release') {
             when { expression {  params['Perform release ?']} }
             steps {
-                withMaven(mavenSettingsConfig: 'maven-config', globalMavenSettingsConfig: 'global-config') {
-                    sh 'git config --global user.email "you@example.com"'
-                    sh 'git config --global user.name "Test"'
-                    sh "mvn release:prepare -s C:/Users/Majid/.m2/settings.xml -B"
-                    sh "mvn release:perform -s C:/Users/Majid/.m2/settings.xml -B"
+                withCredentials([usernamePassword(credentialsId: 'mjidsaa', passwordVariable: 'PASSWORD_VAR', usernameVariable: 'USERNAME_VAR')]){
+                    withMaven(mavenSettingsConfig: 'maven-config', globalMavenSettingsConfig: 'global-config') {
+                        sh 'git config --global user.email "you@example.com"'
+                        sh 'git config --global user.name "Test"'
+                        sh "mvn release:prepare -s C:/Users/Majid/.m2/settings.xml -B -Dusername=$USERNAME_VAR -Dpassword=$PASSWORD_VAR"
+                        sh "mvn release:perform -s C:/Users/Majid/.m2/settings.xml -B -Dusername=$USERNAME_VAR -Dpassword=$PASSWORD_VAR"
+                    }
                 }
             }
         }
