@@ -41,6 +41,8 @@ pipeline {
             when { expression {  params['Perform release ?']} }
             steps {
                 withMaven(mavenSettingsConfig: 'maven-config', globalMavenSettingsConfig: 'global-config') {
+                    sh 'git config --global user.email "you@example.com"'
+                    sh 'git config --global user.name "Test"'
                     sh "mvn release:prepare -s C:/Users/Majid/.m2/settings.xml -B"
                     sh "mvn release:perform -s C:/Users/Majid/.m2/settings.xml -B"
                 }
