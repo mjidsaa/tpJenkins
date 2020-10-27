@@ -30,7 +30,7 @@ pipeline {
          stage ('Deploy') {
                             steps {
                                 withMaven(mavenSettingsConfig: 'maven-config'){
-                                    sh "mvn deploy"
+                                    sh "mvn -X deploy"
                                 }
                             }
                         }
