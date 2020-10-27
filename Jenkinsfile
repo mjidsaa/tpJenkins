@@ -30,7 +30,7 @@ pipeline {
          stage ('Deploy') {
                             steps {
                                 withMaven(mavenSettingsConfig: 'maven-config', globalMavenSettingsConfig: 'global-config'){
-                                    sh "mvn -X deploy"
+                                    sh "mvn -X -s C:/Users/Majid/.m2/settings.xml deploy"
                                 }
                             }
                         }
