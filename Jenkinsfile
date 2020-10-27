@@ -9,7 +9,6 @@ pipeline {
     }
     parameters {
         booleanParam(name: "Perform release ?", description: '', defaultValue: false)
-        string(defaultValue: "", description: '', name: 'Release version')
     }
     stages {
         stage('Initialize') {
@@ -39,11 +38,11 @@ pipeline {
             }
         }
         stage('Release') {
-            when { expression {  params['Perform release ?'] &&  params['Release version'] != null && params['Release version'] != ''} }
+            when { expression {  params['Perform release ?']} }
             steps {
                 withMaven(mavenSettingsConfig: 'maven-config', globalMavenSettingsConfig: 'global-config') {
-                    sh "mvn release:prepare -s C:/Users/Majid/.m2/settings.xml"
-                    sh "mvn release:perform -s C:/Users/Majid/.m2/settings.xml"
+                    sh "mvn release:prepare -s C:/Users/Majid/.m2/settings.xml -B"
+                    sh "mvn release:perform -s C:/Users/Majid/.m2/settings.xml -B"
                 }
             }
         }
