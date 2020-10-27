@@ -6,6 +6,7 @@ pipeline {
     tools {
         maven 'maven'
         jdk 'jdk11'
+        mavenSettingsConfig: 'maven-config'
     }
     stages {
         stage ('Initialize') {
