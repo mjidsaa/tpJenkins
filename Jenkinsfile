@@ -47,6 +47,7 @@ pipeline {
                         sh 'git config --global user.email "you@example.com"'
                         sh 'git config --global user.name "Test"'
                         sh 'git branch release/'+pom.version.replace("-SNAPSHOT","")
+                        sh 'git push origin release/'+pom.version.replace("-SNAPSHOT","")
                         sh 'mvn release:prepare -s C:/Users/Majid/.m2/settings.xml -B -Dusername=$USERNAME_VAR -Dpassword=$PASSWORD_VAR'
                         sh 'mvn release:perform -s C:/Users/Majid/.m2/settings.xml -B -Dusername=$USERNAME_VAR -Dpassword=$PASSWORD_VAR'
                     //}
