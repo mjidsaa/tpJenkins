@@ -40,8 +40,7 @@ pipeline {
         stage('Release') {
             when { expression {  params['Perform release ?']} }
             steps {
-                pom = readMavenPom file: 'pom.xml'
-                pom.version
+                def pom = readMavenPom file: 'pom.xml'
                 withCredentials([usernamePassword(credentialsId: 'mjidsaa', passwordVariable: 'PASSWORD_VAR', usernameVariable: 'USERNAME_VAR')]){
                     //withMaven(mavenSettingsConfig: 'maven-config', globalMavenSettingsConfig: 'global-config') {
                         sh 'git config --global user.email "you@example.com"'
