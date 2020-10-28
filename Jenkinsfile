@@ -40,9 +40,10 @@ pipeline {
         stage('Release') {
             when { expression {  params['Perform release ?']} }
             steps {
-                def pom = readMavenPom file: 'pom.xml'
+
                 withCredentials([usernamePassword(credentialsId: 'mjidsaa', passwordVariable: 'PASSWORD_VAR', usernameVariable: 'USERNAME_VAR')]){
                     //withMaven(mavenSettingsConfig: 'maven-config', globalMavenSettingsConfig: 'global-config') {
+                        pom = readMavenPom file: 'pom.xml'
                         sh 'git config --global user.email "you@example.com"'
                         sh 'git config --global user.name "Test"'
                         sh 'git branch release/'+pom.version.replace("-SNAPSHOT","")
