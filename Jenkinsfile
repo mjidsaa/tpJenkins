@@ -40,13 +40,15 @@ pipeline {
         stage('Release') {
             when { expression {  params['Perform release ?']} }
             steps {
+                pom = readMavenPom file: 'pom.xml'
+                pom.version
                 withCredentials([usernamePassword(credentialsId: 'mjidsaa', passwordVariable: 'PASSWORD_VAR', usernameVariable: 'USERNAME_VAR')]){
                     //withMaven(mavenSettingsConfig: 'maven-config', globalMavenSettingsConfig: 'global-config') {
                         sh 'git config --global user.email "you@example.com"'
                         sh 'git config --global user.name "Test"'
+                        sh 'git branch release/'+pom.version.replace("-SNAPSHOT","")
                         sh 'mvn release:prepare -s C:/Users/Majid/.m2/settings.xml -B -Dusername=$USERNAME_VAR -Dpassword=$PASSWORD_VAR'
                         sh 'mvn release:perform -s C:/Users/Majid/.m2/settings.xml -B -Dusername=$USERNAME_VAR -Dpassword=$PASSWORD_VAR'
-                        sh 'git branch release/$RELEASE_VERSION'
                     //}
                 }
             }
