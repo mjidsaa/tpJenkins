@@ -8,7 +8,7 @@ public class Calculator {
         System.out.println("Bonjour");
         System.out.println("Bonjour");
         System.out.println("Bonjour");
-        System.out.println("Bonjour");
+        System.out.println("Bonjour")
         System.out.println("Bonjour");
         return x + y;
     }
