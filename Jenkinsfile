@@ -1,7 +1,7 @@
 /**
  * Jenkins settings
  */
-def pom = readMavenPom file: 'pom.xml'
+def pom
 pipeline {
     agent any
     tools {
@@ -41,7 +41,9 @@ pipeline {
         stage('Release') {
             when { expression {  params['Perform release ?']} }
             steps {
-
+                script{
+                    pom = readMavenPom file: 'pom.xml'
+                }
                 withCredentials([usernamePassword(credentialsId: 'mjidsaa', passwordVariable: 'PASSWORD_VAR', usernameVariable: 'USERNAME_VAR')]){
                     //withMaven(mavenSettingsConfig: 'maven-config', globalMavenSettingsConfig: 'global-config') {
                         sh 'git config --global user.email "you@example.com"'
