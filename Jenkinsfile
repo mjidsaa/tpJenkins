@@ -58,7 +58,7 @@ pipeline {
         }
         stage('Sonar') {
             steps {
-                sh "mvn  -s C:/Users/Majid/.m2/settings.xml sonar:sonar"
+                sh "mvn  -s C:/Users/Majid/.m2/settings.xml sonar:sonar -Dsonar.login="admin" -Dsonar.password ="admin123""
             }
         }
     }
