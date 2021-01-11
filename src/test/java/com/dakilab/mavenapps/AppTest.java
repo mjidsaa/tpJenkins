@@ -12,7 +12,7 @@ public class AppTest
     @Test
     public void testCalculator(){
         // Arrange
-        int a = 3;
+        int a = 2;
         int b = 3;
         Calculator calculator = new Calculator();
 
